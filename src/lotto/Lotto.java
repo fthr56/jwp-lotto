@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Lotto {
 
 	private ArrayList<Integer> lottoNos;
-
+//	private int bonusNumber;
 	Lotto() {
 	}
 
@@ -53,11 +53,20 @@ public class Lotto {
 		System.out.println("지난 주 당첨 번호를 입력해 주세요.");
 		String winningLotto = scanner.nextLine();
 		System.out.println(winningLotto);
+//		System.out.println("보너스 번호를 입력 하세요.");
+//		setterBonus(scanner.nextInt());
 		return winningLotto;
 	}
-
+	
+//	private void setterBonus(int bonus) {
+//		bonusNumber = bonus;
+//	}
+	
 	Lotto getMachineLotto(String winningLotto) {
 		lottoNos = new ArrayList<>();
+		if(winningLotto.equals("lottery")) {
+			return buyAutoLotto();
+		}
 		String[] winningLottoArray = winningLotto.split(",");
 		for (int i = 0; i < winningLottoArray.length; i++) {
 			lottoNos.add(Integer.parseInt(winningLottoArray[i]));
@@ -67,13 +76,12 @@ public class Lotto {
 
 	Result matchLotto(Lotto winningLotto, ArrayList<Lotto> buyngLottos) {
 		Result result = new Result();
-		for (int i = 0; i < buyngLottos.size(); i++) {
-			Lotto myLotto = buyngLottos.get(i);
-			result = myLotto.matchLotto(winningLotto);
+		for(Lotto lotto : buyngLottos)
+		{
+			result = result.addResult(lotto.matchLotto(winningLotto));
 		}
 		return result;
 	}
-
 	Result matchLotto(Lotto winningLotto) {
 		Result result = new Result();
 		int count = 0;
@@ -82,12 +90,19 @@ public class Lotto {
 				count++;
 			}
 		}
+//		if(count == 5) {
+//			count = bonusCheck();
+//		}
 		result.setMatch(count);
 		return result;
 	}
 	
-//	Result matchLotto(Lotto winningLotto)
-//	Result addResult(Result result)
+//	int bonusCheck() {
+//		if(lottoNos.contains(bonusNumber)) {
+//			return 7;
+//		}
+//		return 5;
+//	}
 	
 	void showLottoReport(int money, Result result) {
 		System.out.println("당첨 통계");

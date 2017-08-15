@@ -5,12 +5,14 @@ public class Result {
 	private int countOfMatch4;
 	private int countOfMatch5;
 	private int countOfMatch6;
+	private int countOfMatch7;
 
 	Result() {
 		countOfMatch3 = 0;
 		countOfMatch4 = 0;
 		countOfMatch5 = 0;
 		countOfMatch6 = 0;
+		countOfMatch7 = 0;
 	}
 
 	public void setMatch(int count) {
@@ -26,6 +28,9 @@ public class Result {
 			break;
 		case 6:
 			countOfMatch6++;
+			break;
+		case 7:
+			countOfMatch7++;
 			break;
 		default:
 			break;
@@ -48,6 +53,13 @@ public class Result {
 		return countOfMatch6;
 	}
 
+	public Result addResult(Result result) {
+		this.countOfMatch3 += result.countOfMatch3;
+		this.countOfMatch4 += result.countOfMatch4;
+		this.countOfMatch5 += result.countOfMatch5;
+		this.countOfMatch6 += result.countOfMatch6;
+		return this;
+	}
 	public int getRate(int money) {
 		double total = countOfMatch3 * 5000 + countOfMatch4 * 50000 + countOfMatch5 * 1500000 + countOfMatch6 * 2000000000;
 		return (int)((total / money) * 100);

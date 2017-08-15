@@ -36,7 +36,7 @@ public class Result {
 			break;
 		}
 	}
-	
+
 	public int getCountOfMatch3() {
 		return countOfMatch3;
 	}
@@ -53,15 +53,22 @@ public class Result {
 		return countOfMatch6;
 	}
 
+	public int getCountOfMatch7() {
+		return countOfMatch7;
+	}
+
 	public Result addResult(Result result) {
 		this.countOfMatch3 += result.countOfMatch3;
 		this.countOfMatch4 += result.countOfMatch4;
 		this.countOfMatch5 += result.countOfMatch5;
 		this.countOfMatch6 += result.countOfMatch6;
+		this.countOfMatch7 += result.countOfMatch7;
 		return this;
 	}
+
 	public int getRate(int money) {
-		double total = countOfMatch3 * 5000 + countOfMatch4 * 50000 + countOfMatch5 * 1500000 + countOfMatch6 * 2000000000;
-		return (int)((total / money) * 100);
+		double total = countOfMatch3 * 5000 + countOfMatch4 * 50000 + countOfMatch5 * 1500000 + countOfMatch7 * 30000000
+				+ countOfMatch6 * 2000000000;
+		return (int) ((total / money) * 100);
 	}
 }

@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Lotto {
 
 	private ArrayList<Integer> lottoNos;
-//	private int bonusNumber;
+	private int bonusNumber;
 	Lotto() {
 	}
 
@@ -58,9 +58,10 @@ public class Lotto {
 		return winningLotto;
 	}
 	
-//	private void setterBonus(int bonus) {
-//		bonusNumber = bonus;
-//	}
+	public void setterBonus(Scanner scanner) {
+		System.out.println("보너스 번호를 입력 하세요.");
+		bonusNumber = scanner.nextInt();
+	}
 	
 	Lotto getMachineLotto(String winningLotto) {
 		lottoNos = new ArrayList<>();
@@ -90,28 +91,32 @@ public class Lotto {
 				count++;
 			}
 		}
-//		if(count == 5) {
-//			count = bonusCheck();
-//		}
+		if(count == 5) {
+			count = bonusCheck(winningLotto);
+		}
 		result.setMatch(count);
 		return result;
 	}
 	
-//	int bonusCheck() {
-//		if(lottoNos.contains(bonusNumber)) {
-//			return 7;
-//		}
-//		return 5;
-//	}
+	int bonusCheck(Lotto winningLotto) {
+		if(lottoNos.contains(winningLotto.getBonusNumber())) {
+			return 7;
+		}
+		return 5;
+	}
 	
+	public int getBonusNumber() {
+		return bonusNumber;
+	}
+
 	void showLottoReport(int money, Result result) {
 		System.out.println("당첨 통계");
 		System.out.println("--------------------");
 		System.out.printf("3개 일치 (5000원)- %d개\n", result.getCountOfMatch3());
 		System.out.printf("4개 일치 (50000원)- %d개\n", result.getCountOfMatch4());
 		System.out.printf("5개 일치 (1500000원)- %d개\n", result.getCountOfMatch5());
+		System.out.printf("5개 일치, 보너스 볼 일치(30000000원)- %d개\n", result.getCountOfMatch7());
 		System.out.printf("6개 일치 (2000000000원)- %d개\n", result.getCountOfMatch6());
-
 		System.out.printf("총 수익률은 %d%%입니다.\n", result.getRate(money));
 	}
 }

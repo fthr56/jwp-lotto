@@ -14,6 +14,7 @@ public class LottoMain {
 		
 		String winningNumber = lotto.getWinningNumber(scanner);
 		Lotto winningLotto = lotto.getMachineLotto(winningNumber);
+		winningLotto.setterBonus(scanner);
 		
 		Result result = lotto.matchLotto(winningLotto, buyngLottos);
 		lotto.showLottoReport(money, result);

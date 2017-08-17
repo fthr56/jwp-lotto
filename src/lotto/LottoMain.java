@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class LottoMain {
 	public static void main(String[] args) {
 		Lotto lotto = new Lotto();
@@ -9,14 +10,14 @@ public class LottoMain {
 
 		int money = lotto.getBuyingMoney(scanner);
 		int volume = lotto.countOfLotto(money);
-		
+
 		ArrayList<Lotto> buyngLottos = lotto.buyAutoLottos(volume);
-		
+
 		String winningNumber = lotto.getWinningNumber(scanner);
 		Lotto winningLotto = lotto.getMachineLotto(winningNumber);
 		winningLotto.setterBonus(scanner);
-		
-		Result result = lotto.matchLotto(winningLotto, buyngLottos);
+
+		Result result = lotto.matchLottos(winningLotto, buyngLottos);
 		lotto.showLottoReport(money, result);
 	}
 

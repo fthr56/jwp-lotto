@@ -53,8 +53,6 @@ public class Lotto {
 		System.out.println("지난 주 당첨 번호를 입력해 주세요.");
 		String winningLotto = scanner.nextLine();
 		System.out.println(winningLotto);
-//		System.out.println("보너스 번호를 입력 하세요.");
-//		setterBonus(scanner.nextInt());
 		return winningLotto;
 	}
 	
@@ -72,10 +70,11 @@ public class Lotto {
 		for (int i = 0; i < winningLottoArray.length; i++) {
 			lottoNos.add(Integer.parseInt(winningLottoArray[i]));
 		}
+		System.out.println(lottoNos);
 		return new Lotto(lottoNos);
 	}
 
-	Result matchLotto(Lotto winningLotto, ArrayList<Lotto> buyngLottos) {
+	Result matchLottos(Lotto winningLotto, ArrayList<Lotto> buyngLottos) {
 		Result result = new Result();
 		for(Lotto lotto : buyngLottos)
 		{
@@ -83,19 +82,25 @@ public class Lotto {
 		}
 		return result;
 	}
+	
 	Result matchLotto(Lotto winningLotto) {
 		Result result = new Result();
 		int count = 0;
-		for(Integer each : winningLotto.lottoNos) {
-			if(lottoNos.contains(each)) {
-				count++;
-			}
+		for(Integer number : winningLotto.lottoNos) {
+			count += matchNumber(winningLotto, number);
 		}
 		if(count == 5) {
 			count = bonusCheck(winningLotto);
 		}
 		result.setMatch(count);
 		return result;
+	}
+	
+	int matchNumber(Lotto winningLotto, int number) {
+		if(lottoNos.contains(number)) {
+			return 1;
+		}
+		return 0;
 	}
 	
 	int bonusCheck(Lotto winningLotto) {

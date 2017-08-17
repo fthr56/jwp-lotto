@@ -4,18 +4,15 @@ import java.util.ArrayList;
 
 public class User {
 	private ArrayList<Lotto> buyLottos = new ArrayList<>();
-	private int money;
-	private int volume;
-	private Result result;
+	private Money money;
+	private Result result = new Result();
 
-	User(int money) {
-		this.money = money;
-		this.volume = money / 1000;
-		this.result = new Result();
+	User(int money){
+		this.money = new Money(money);
 	}
 
 	public void buyLottos(Machine machine) {
-		buyLottos = machine.createLottos(volume);
+		buyLottos = machine.createLottos(money);
 	}
 
 	public void showLottos() {

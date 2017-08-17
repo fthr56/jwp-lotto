@@ -5,9 +5,9 @@ import java.util.Collections;
 
 public class Machine {
 
-	public ArrayList<Lotto> createLottos(int volume) {
+	public ArrayList<Lotto> createLottos(Money money) {
 		ArrayList<Lotto> lottos = new ArrayList<>();
-		for (int i = 0; i < volume; i++) {
+		for (int i = 0; i < money.lottoVolume(); i++) {
 			lottos.add(createLotto());
 		}
 		return lottos;

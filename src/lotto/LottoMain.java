@@ -10,11 +10,10 @@ public class LottoMain {
 		System.out.println("구입금액을 입력해 주세요.");
 		int money = scanner.nextInt();
 		scanner.nextLine();
-		int volume = money / 1000;
 
 		User user = new User(money);
 		user.buyLottos(machine);
-		System.out.println(volume + "개를 구매했습니다.");
+		System.out.println(money/1000 + "개를 구매했습니다.");
 
 		user.showLottos();
 

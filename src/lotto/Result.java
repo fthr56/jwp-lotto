@@ -52,7 +52,7 @@ public class Result {
 		return (int) ((total / money) * 100);
 	}
 
-	public void showResult(int money) {
+	public void showResult(Money money) {
 		System.out.println("당첨 통계");
 		System.out.println("--------------------");
 		System.out.printf("3개 일치 (5000원)- %d개\n", this.countOfMatch3);
@@ -60,6 +60,6 @@ public class Result {
 		System.out.printf("5개 일치 (1500000원)- %d개\n", this.countOfMatch5);
 		// System.out.printf("5개 일치, 보너스 볼 일치(30000000원)- %d개\n", this.countOfMatch6);
 		System.out.printf("6개 일치 (2000000000원)- %d개\n", this.countOfMatch6);
-		System.out.printf("총 수익률은 %d%%입니다.\n", getRate(money));
+		System.out.printf("총 수익률은 %d%%입니다.\n", getRate(money.getMoney()));
 	}
 }

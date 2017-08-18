@@ -1,13 +1,13 @@
 package lotto;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class User {
-	private ArrayList<Lotto> buyLottos = new ArrayList<>();
+	private List<Lotto> buyLottos;
 	private Money money;
 	private Result result = new Result();
 
-	User(int money){
+	User(int money) {
 		this.money = new Money(money);
 	}
 
@@ -17,42 +17,19 @@ public class User {
 
 	public void showLottos() {
 		for (Lotto buyLotto : buyLottos) {
-			buyLotto.showLotto();
+			buyLotto.show();
 		}
-	}
-
-	public void matchLottos(Lotto winningLotto) {
-		int count = 0;
-		for (Lotto buyLotto : buyLottos) {
-			count = buyLotto.matchLotto(winningLotto);
-			result.updateResult(count);
-		}
+		money.howMany();
 	}
 
 	public void showResult() {
 		result.showResult(money);
 	}
 
-	// Result matchLottos(Lotto winningLotto, ArrayList<Lotto> buyngLottos) {
-	// Result result = new Result();
-	// for(Lotto lotto : buyngLottos)
-	// {
-	// result = result.addResult(lotto.matchLotto(winningLotto));
-	// }
-	// return result;
-	// }
-	//
-	// Result matchLotto(Lotto winningLotto) {
-	// Result result = new Result();
-	// int count = 0;
-	// for(Integer number : winningLotto.lotto) {
-	// count += matchNumber(winningLotto, number);
-	// }
-	// if(count == 5) {
-	// count = bonusCheck(winningLotto);
-	// }
-	// result.setMatch(count);
-	// return result;
-	// }
-
+	public Result matchLottos(Lotto winningLotto) {
+		for (Lotto lotto : buyLottos) {
+			result.updateResult(winningLotto.matchLotto(lotto));
+		}
+		return result;
+	}
 }

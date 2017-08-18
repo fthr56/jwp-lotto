@@ -2,42 +2,50 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Machine {
+	private static List<Integer> randomNumbers = new ArrayList<>();
+	private static final int normalLotto = 6;
+	private static final int winningLotto = 7;
 
-	public ArrayList<Lotto> createLottos(Money money) {
-		ArrayList<Lotto> lottos = new ArrayList<>();
+	Machine() {
+		setup();
+	}
+
+	public void setup() {
+		for (int i = 0; i < 45; i++) {
+			randomNumbers.add(i + 1);
+		}
+	}
+
+	public List<Lotto> createLottos(Money money) {
+		List<Lotto> lottos = new ArrayList<>();
 		for (int i = 0; i < money.lottoVolume(); i++) {
-			lottos.add(createLotto());
+			lottos.add(createLotto(normalLotto));
 		}
 		return lottos;
 	}
 
-	public Lotto createLotto() {
-		ArrayList<Integer> numbers = new ArrayList<>();
-		for (int i = 0; i < 45; i++) {
-			numbers.add(i + 1);
-		}
-		Collections.shuffle(numbers);
-		numbers = new ArrayList<Integer>(numbers.subList(0, 6));
-		Collections.sort(numbers);
+	public Lotto createLotto(int lottoType) {
+		Collections.shuffle(randomNumbers);
+		List<Integer> lotto = new ArrayList<Integer>(randomNumbers.subList(0, lottoType));
+		Collections.sort(lotto);
 
-		return new Lotto(numbers);
+		return new Lotto(lotto);
 	}
 
 	public Lotto createWinningLotto(String winningString) {
-		
 		if (winningString.equals("lottery")) {
-			return createLotto();
-		}
-		
-		ArrayList<Integer> winningLotto = new ArrayList<>();
-		String[] winningStringArray = winningString.split(",");
-		
-		for (int i = 0; i < winningStringArray.length; i++) {
-			winningLotto.add(Integer.parseInt(winningStringArray[i]));
+			return createLotto(winningLotto);
 		}
 
+		ArrayList<Integer> winningLotto = new ArrayList<>();
+		String[] winningStringArray = winningString.split(",");
+
+		for (String number : winningStringArray) {
+			winningLotto.add(Integer.parseInt(number));
+		}
 		return new Lotto(winningLotto);
 	}
 }

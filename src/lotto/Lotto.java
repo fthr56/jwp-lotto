@@ -1,53 +1,37 @@
 package lotto;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Lotto {
 
-	private ArrayList<Integer> lottoNumbes;
-//	private int bonusNumber;
+	private final List<Integer> lottoNumbers;
+	private static final int bonusIndex = 6;
+	private static final int lottoSize = 6;
 
-	Lotto(ArrayList<Integer> lotto) {
-		this.lottoNumbes = lotto;
+	Lotto(List<Integer> lotto) {
+		this.lottoNumbers = lotto;
 	}
 
-	////
-	public void showLotto() {
-		System.out.println(this.lottoNumbes);
+	public void show() {
+		System.out.println(lottoNumbers);
 	}
-	////
 
-
-//	public void setterBonus(Scanner scanner) {
-//		System.out.println("보너스 번호를 입력 하세요.");
-//		bonusNumber = scanner.nextInt();
-//	}
-
-	public int matchLotto(Lotto winningLotto) {
+	public int matchLotto(Lotto buyLotto) {
 		int count = 0;
-		for (Integer number : winningLotto.lottoNumbes) {
-			count += matchNumber(number);
+		for (int i = 0; i < lottoSize; i++) {
+			count += buyLotto.matchNumber(lottoNumbers.get(i));
 		}
-		// System.out.println("count =" + count);
+		if (count == 5 && buyLotto.matchNumber(lottoNumbers.get(bonusIndex)) == 1) {
+			count = 7;
+		}
 		return count;
 	}
 
-	int matchNumber(int number) {
-		if (this.lottoNumbes.contains(number)) {
+	private int matchNumber(int number) {
+		if (lottoNumbers.contains(number)) {
 			return 1;
 		}
 		return 0;
 	}
-
-//	int bonusCheck(Lotto winningLotto) {
-//		if (this.lottoNumbes.contains(winningLotto.getBonusNumber())) {
-//			return 7;
-//		}
-//		return 5;
-//	}
-
-//	public int getBonusNumber() {
-//		return bonusNumber;
-//	}
 
 }

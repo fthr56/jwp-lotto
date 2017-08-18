@@ -40,7 +40,7 @@ public class Machine {
 			return createLotto(winningLotto);
 		}
 
-		ArrayList<Integer> winningLotto = new ArrayList<>();
+		List<Integer> winningLotto = new ArrayList<>();
 		String[] winningStringArray = winningString.split(",");
 
 		for (String number : winningStringArray) {

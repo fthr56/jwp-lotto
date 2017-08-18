@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -7,9 +8,9 @@ public class Lotto {
 	private final List<Integer> lottoNumbers;
 	private static final int bonusIndex = 6;
 	private static final int lottoSize = 6;
-
+	
 	Lotto(List<Integer> lotto) {
-		this.lottoNumbers = lotto;
+		lottoNumbers = Collections.unmodifiableList(lotto);
 	}
 
 	public void show() {

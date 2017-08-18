@@ -15,7 +15,7 @@ public class Money {
 		return (int) ((totalMoney / money) * 100);
 	}
 	
-	public void howMany() {
+	public void showLottoVolume() {
 		System.out.println(lottoVolume() + "개를 구매했습니다.\n");
 	}
 

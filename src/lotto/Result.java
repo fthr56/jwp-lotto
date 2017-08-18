@@ -15,7 +15,7 @@ public class Result {
 		countOfMatchBonus = 0;
 	}
 
-	public void updateResult(int count) {
+	public void update(int count) {
 		switch (count) {
 		case 3:
 			countOfMatch3++;

@@ -19,17 +19,17 @@ public class User {
 		for (Lotto buyLotto : buyLottos) {
 			buyLotto.show();
 		}
-		money.howMany();
+		money.showLottoVolume();
 	}
 
 	public void showResult() {
 		result.showResult(money);
 	}
 
-	public Result matchLottos(Lotto winningLotto) {
+	public void matchLottos(Machine machine, String winningString) {
+		Lotto winningLotto = machine.createWinningLotto(winningString);
 		for (Lotto lotto : buyLottos) {
-			result.updateResult(winningLotto.matchLotto(lotto));
+			result.update(winningLotto.matchLotto(lotto));
 		}
-		return result;
 	}
 }

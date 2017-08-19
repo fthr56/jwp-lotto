@@ -28,9 +28,9 @@ public class Machine {
 		return lottos;
 	}
 
-	private Lotto createLotto(int lottoType) {
+	public Lotto createLotto(int lottoType) {
 		Collections.shuffle(randomNumbers);
-		List<Integer> lotto = randomNumbers.subList(0, lottoType);
+		List<Integer> lotto = new ArrayList<Integer>(randomNumbers.subList(0, lottoType));
 		Collections.sort(lotto);
 
 		return new Lotto(lotto);

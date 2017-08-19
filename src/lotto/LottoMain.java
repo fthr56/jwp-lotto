@@ -10,11 +10,9 @@ public class LottoMain {
 		User user = new User(Input.useMoney(scanner));
 		user.buyLottos(machine);
 		user.showLottos();
-		// user.matchLottos(machine.createWinningLotto(Input.writeWinningNumber(scanner)));
 		user.matchLottos(machine, Input.winningNumber(scanner));
 		user.showResult();
 
 		scanner.close();
 	}
-
 }

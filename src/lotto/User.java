@@ -5,7 +5,7 @@ import java.util.List;
 public class User {
 	private List<Lotto> buyLottos;
 	private Money money;
-	private Result result = new Result();
+	private Result result;
 
 	User(int money) {
 		this.money = new Money(money);
@@ -27,6 +27,7 @@ public class User {
 	}
 
 	public void matchLottos(Machine machine, String winningString) {
+		result = new Result();
 		Lotto winningLotto = machine.createWinningLotto(winningString);
 		for (Lotto lotto : buyLottos) {
 			result.update(winningLotto.matchLotto(lotto));

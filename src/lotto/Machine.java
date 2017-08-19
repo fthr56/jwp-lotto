@@ -5,11 +5,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class Machine {
-	private static List<Integer> randomNumbers = new ArrayList<>();
+	private List<Integer> randomNumbers;
 	private static final int normalLotto = 6;
 	private static final int winningLotto = 7;
 
 	Machine() {
+		randomNumbers = new ArrayList<>();
 		setup();
 	}
 

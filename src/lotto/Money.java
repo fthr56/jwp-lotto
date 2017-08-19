@@ -18,5 +18,4 @@ public class Money {
 	public void showLottoVolume() {
 		System.out.println(lottoVolume() + "개를 구매했습니다.\n");
 	}
-
 }
